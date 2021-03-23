@@ -1,4 +1,4 @@
-package br.com.dbserver.support;
+package br.com.dbserver.utils;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -10,8 +10,6 @@ import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.io.IoBuilder;
 
 public class Rest {
     private final String url;
@@ -20,13 +18,12 @@ public class Rest {
 
     public Rest(String _url) {
         url = _url;
-        Logger LOGGER = LogManager.getLogger(Rest.class);
+        LogManager.getLogger(Rest.class);
         requestSpecification = new RequestSpecBuilder()
                 .setConfig(RestAssuredConfig.config()
                         .logConfig(LogConfig.logConfig()
                                 .enablePrettyPrinting(true)
                                 .enableLoggingOfRequestAndResponseIfValidationFails(LogDetail.ALL)
-                                .defaultStream(new PrintStreamExtent(IoBuilder.forLogger(LOGGER).buildPrintStream()))
                         )
                 ).log(LogDetail.ALL).build();
         responseSpecification = new ResponseSpecBuilder().log(LogDetail.ALL).build();

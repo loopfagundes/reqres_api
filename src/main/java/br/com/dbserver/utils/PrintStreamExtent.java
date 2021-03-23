@@ -1,4 +1,4 @@
-package br.com.dbserver.support;
+package br.com.dbserver.utils;
 
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.service.ExtentService;
