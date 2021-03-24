@@ -2,21 +2,18 @@ package br.com.dbserver.testcases;
 
 import br.com.dbserver.utils.Rest;
 import br.com.dbserver.utils.Endpoint;
-import com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter;
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import org.apache.http.HttpStatus;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-@Listeners({ExtentITestListenerClassAdapter.class})
 public class ListaDosUsuariosTestCase extends Endpoint {
     private Rest rest = new Rest(BASE_URI);
 
-    @Test(
-            description = "Metodo de GET para buscar a lista dos usuarios.",
-            groups = {"GET"},
-            priority = 1
-    )
+    @Description("Metodo de GET para buscar a lista dos usuario.")
+    @Feature("GET Usuario")
+    @Test
     public void getListUsers200() {
         rest.get(BASE_PATH_LIST_USERS, HttpStatus.SC_OK)
                 .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("schemas/ListUsers.json"));
